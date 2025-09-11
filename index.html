@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debora Portfolio</title>
+    <style>
+        /* --- General Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #FFFFFF, #FFFAFA, #FFF5F5); /* Soft white to light pink gradient */
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Header Styles --- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .header.transparent {
+            background-color: transparent;
+        }
+
+        .header.solid {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #E91E63; /* Pink color for logo */
+            text-decoration: none;
+            transition: transform 0.5s ease;
+            opacity: 0;
+            letter-spacing: 2px;
+        }
+
+        .logo.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .desktop-nav {
+            display: none;
+        }
+
+        .mobile-menu-toggle {
+            display: block;
+            font-size: 2em;
+            color: #E91E63;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            transition: right 0.5s ease;
+            z-index: 1050;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: 500;
+            padding: 10px 0;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+            animation-delay: var(--delay);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: #E91E63;
+        }
+        
+        /* --- Landing Page Styles --- */
+        .landing-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+        }
+        
+        .main-content {
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+            transition: opacity 1s ease, transform 1s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            letter-spacing: 3px;
+        }
+
+        .description {
+            font-size: 1em;
+            max-width: 500px;
+            line-height: 1.6;
+            color: #555;
+            transition: opacity 1s ease, transform 1s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition-delay: 0.5s;
+        }
+        
+        .title.visible, .description.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .fade-in-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 1s ease-out, opacity 1s ease-out;
+            transition-delay: 1.5s;
+        }
+        
+        .fade-in-image.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* --- Sakura Particle Effect --- */
+        .sakura-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .sakura {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FF69B4" d="M50 0c-25 0-45 20-45 45S25 100 50 100 95 80 95 55 75 0 50 0z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: fall linear infinite;
+        }
+
+        /* --- Media Queries --- */
+        @media (min-width: 768px) {
+            .header {
+                justify-content: space-between;
+                padding: 20px 80px;
+            }
+
+            .logo {
+                transition: transform 0.5s ease;
+            }
+            
+            .desktop-logo-container {
+                position: absolute;
+                top: 50%;
+                left: 80px;
+                transform: translateY(-50%);
+                text-align: left;
+            }
+            
+            .desktop-logo-container .logo {
+                font-size: 5em;
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            
+            .desktop-logo-container .logo.visible {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .desktop-nav {
+                display: flex;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .desktop-nav a {
+                color: #555;
+                text-decoration: none;
+                font-size: 1.2em;
+                font-weight: 500;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s ease;
+            }
+            
+            .desktop-nav a:hover {
+                color: #E91E63;
+            }
+            
+            .desktop-nav a.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .mobile-menu-toggle, .mobile-menu {
+                display: none;
+            }
+
+            .landing-page {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 80px;
+            }
+            
+            .main-content {
+                text-align: left;
+                width: 50%;
+            }
+            
+            .image-container {
+                width: 50%;
+                justify-content: flex-end;
+                padding-right: 80px;
+            }
+            
+            .fade-in-image {
+                transform: translateY(100%);
+            }
+        }
+        
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.5;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header transparent">
+        <a href="#" class="logo mobile-logo">Debora</a>
+
+        <nav class="desktop-nav">
+            <a href="#info">Info</a>
+            <a href="#upload">Upload</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#story">Story</a>
+        </nav>
+
+        <div class="mobile-menu-toggle">&#9776;</div>
+    </header>
+
+    <nav class="mobile-menu">
+        <a href="#info" style="--delay: 0.2s;">Info</a>
+        <a href="#upload" style="--delay: 0.4s;">Upload</a>
+        <a href="#gallery" style="--delay: 0.6s;">Gallery</a>
+        <a href="#story" style="--delay: 0.8s;">Story</a>
+    </nav>
+    
+    <main class="landing-page">
+        <div class="desktop-logo-container">
+            <h1 class="logo desktop-logo">Debora</h1>
+            <p class="description desktop-desc">
+                Saya seorang desainer kreatif dengan semangat untuk mengubah ide menjadi pengalaman visual yang indah. Portofolio ini menampilkan perjalanan saya dalam desain.
+            </p>
+        </div>
+        
+        <div class="main-content">
+            <h1 class="title mobile-title">Debora</h1>
+            <p class="description mobile-desc">
+                Saya seorang desainer kreatif dengan semangat untuk mengubah ide menjadi pengalaman visual yang indah. Portofolio ini menampilkan perjalanan saya dalam desain.
+            </p>
+        </div>
+        
+        <div class="image-container">
+            <img src="https://via.placeholder.com/800x600.png?text=Your+Personal+Image+Here" alt="Personal Image" class="fade-in-image">
+        </div>
+        
+        <div class="sakura-container"></div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const header = document.querySelector('.header');
+            const mobileLogo = document.querySelector('.mobile-logo');
+            const desktopLogo = document.querySelector('.desktop-logo');
+            const title = document.querySelector('.title');
+            const description = document.querySelector('.description');
+            const fadeImage = document.querySelector('.fade-in-image');
+            const desktopNavLinks = document.querySelectorAll('.desktop-nav a');
+
+            // Toggle mobile menu
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+
+            // Handle scroll for header and animations
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.remove('transparent');
+                    header.classList.add('solid');
+                } else {
+                    header.classList.remove('solid');
+                    header.classList.add('transparent');
+                }
+            });
+
+            // Initial animations on page load
+            window.onload = () => {
+                // Determine if it's a desktop or mobile view
+                if (window.innerWidth >= 768) {
+                    desktopLogo.classList.add('visible');
+                    document.querySelector('.desktop-desc').classList.add('visible');
+                    desktopNavLinks.forEach((link, index) => {
+                        setTimeout(() => {
+                            link.classList.add('visible');
+                        }, index * 200);
+                    });
+                } else {
+                    mobileLogo.classList.add('visible');
+                    title.classList.add('visible');
+                    description.classList.add('visible');
+                }
+                
+                fadeImage.classList.add('visible');
+                createSakuraParticles(50); // Create 50 sakura particles
+            };
+
+            // Function to create sakura particles
+            function createSakuraParticles(count) {
+                const container = document.querySelector('.sakura-container');
+                for (let i = 0; i < count; i++) {
+                    const sakura = document.createElement('div');
+                    sakura.classList.add('sakura');
+                    
+                    const size = Math.random() * 15 + 10;
+                    const duration = Math.random() * 20 + 10;
+                    const delay = Math.random() * 10;
+                    const left = Math.random() * 100;
+
+                    sakura.style.width = `${size}px`;
+                    sakura.style.height = `${size}px`;
+                    sakura.style.left = `${left}%`;
+                    sakura.style.animationDuration = `${duration}s`;
+                    sakura.style.animationDelay = `${delay}s`;
+
+                    container.appendChild(sakura);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
