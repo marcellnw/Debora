@@ -105,7 +105,6 @@
             font-weight: 700;
             margin-bottom: 50px;
         }
-        /* Portfolio Cards */
         .portfolio-slider {
             overflow-x: auto;
             scroll-snap-type: x mandatory;
@@ -116,7 +115,7 @@
             display: flex;
             gap: 30px;
             padding-bottom: 20px;
-            justify-content: center; /* Menengahkan card */
+            justify-content: flex-start;
         }
         .portfolio-item {
             flex: 0 0 auto;
@@ -146,7 +145,6 @@
             color: var(--light-text);
             padding: 0 15px 15px;
         }
-        /* Gallery Cards */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -159,7 +157,7 @@
         }
         .gallery-item-card img {
             width: 100%;
-            height: 300px; /* Ukuran gambar diperkecil dan konsisten */
+            height: 300px;
             object-fit: cover;
             display: block;
             transition: transform 0.3s ease;
@@ -167,7 +165,6 @@
         .gallery-item-card:hover img {
             transform: scale(1.05);
         }
-        /* About Me */
         #about-me .content {
             display: flex;
             flex-direction: column;
@@ -176,13 +173,12 @@
             text-align: center;
         }
         #about-me .profile-pic {
-            width: 200px; /* Ukuran foto diperkecil */
+            width: 200px;
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        /* Contact */
         #contact {
             text-align: center;
         }
@@ -220,11 +216,47 @@
             color: var(--light-text);
             background-color: #f0f0f0;
         }
-        /* Responsiveness */
-        @media (min-width: 768px) {
+
+        /* Perbaikan Responsivitas */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+                text-align: center;
+            }
+            nav {
+                margin-top: 10px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .section {
+                padding: 40px 0;
+            }
+            .section-title {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            .portfolio-grid {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+            }
+            .portfolio-item {
+                width: 280px;
+            }
+            .gallery-item-card img {
+                height: 200px;
+            }
             #about-me .content {
-                flex-direction: row;
-                text-align: left;
+                flex-direction: column;
+                text-align: center;
+            }
+            #about-me .profile-pic {
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -368,7 +400,6 @@
 <script>
     document.querySelectorAll('.portfolio-item').forEach(item => {
         item.addEventListener('mouseover', () => {
-            // Bisa menambahkan efek sparkle di sini jika diperlukan
             console.log('Hover on portfolio item');
         });
         item.addEventListener('mouseout', () => {
