@@ -21,6 +21,7 @@
             background-color: var(--primary-bg);
             color: var(--primary-text);
             line-height: 1.6;
+            overflow-x: hidden; /* Mencegah horizontal scroll di body */
         }
         #particles-js {
             position: absolute;
@@ -99,25 +100,35 @@
             font-weight: 700;
             margin-bottom: 50px;
         }
+        /* Style untuk Card Slider (Perubahan) */
+        .portfolio-slider {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 0 20px;
+            -webkit-overflow-scrolling: touch;
+        }
         .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
             gap: 30px;
+            padding-bottom: 20px;
         }
         .portfolio-item {
+            flex: 0 0 auto;
+            width: 300px; /* Ukuran kartu tetap */
             background: #fff;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             border-radius: 10px;
             overflow: hidden;
             text-align: center;
             transition: transform 0.3s ease;
+            scroll-snap-align: center;
         }
         .portfolio-item:hover {
             transform: scale(1.05);
         }
         .portfolio-item img {
             width: 100%;
-            height: 120px; /* Ukuran foto diubah jadi lebih kecil */
+            height: 180px; /* Ukuran foto diperbaiki */
             object-fit: cover;
         }
         .portfolio-item h3 {
@@ -225,21 +236,33 @@
 
 <section id="portfolio" class="section container">
     <h2 class="section-title">Selected Works</h2>
-    <div class="portfolio-grid">
-        <div class="portfolio-item">
-            <img src="https://via.placeholder.com/400x200" alt="Proyek 1">
-            <h3>Project Blossom</h3>
-            <p>A rebranding case study for a local flower shop.</p>
-        </div>
-        <div class="portfolio-item">
-            <img src="https://via.placeholder.com/400x200" alt="Proyek 2">
-            <h3>Digital Marketing Campaign</h3>
-            <p>UI/UX design for a new SEO optimization app.</p>
-        </div>
-        <div class="portfolio-item">
-            <img src="https://via.placeholder.com/400x200" alt="Proyek 3">
-            <h3>Neauthy Cosmetics</h3>
-            <p>E-commerce website design for a cosmetic brand.</p>
+    <div class="portfolio-slider">
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x200" alt="Proyek 1">
+                <h3>Project Blossom</h3>
+                <p>A rebranding case study for a local flower shop.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x200" alt="Proyek 2">
+                <h3>Digital Marketing Campaign</h3>
+                <p>UI/UX design for a new SEO optimization app.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x200" alt="Proyek 3">
+                <h3>Neauthy Cosmetics</h3>
+                <p>E-commerce website design for a cosmetic brand.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x200" alt="Proyek 4">
+                <h3>Coffee Shop App</h3>
+                <p>UI/UX design for a mobile coffee ordering app.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x200" alt="Proyek 5">
+                <h3>Personal Branding</h3>
+                <p>Visual identity and logo design for a personal brand.</p>
+            </div>
         </div>
     </div>
 </section>
