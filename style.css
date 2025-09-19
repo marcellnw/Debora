@@ -1,0 +1,49 @@
+/* Background bintang */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: black url("https://www.transparenttextures.com/patterns/stardust.png");
+  z-index: -2;
+}
+
+/* Layer bulan (parallax) */
+body::after {
+  content: "";
+  position: fixed;
+  top: 50px; right: 50px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle at 30% 30%, #f0f6fc, #888);
+  border-radius: 50%;
+  opacity: 0.8;
+  box-shadow: 0 0 40px #fff;
+  z-index: -1;
+  animation: floatMoon 20s ease-in-out infinite alternate;
+}
+
+/* Animasi bulan pelan naik turun */
+@keyframes floatMoon {
+  from { transform: translateY(0px); }
+  to { transform: translateY(30px); }
+}
+
+/* Bintang berkedip */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.2; }
+}
+
+/* Efek muncul (fade-in + naik) */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
