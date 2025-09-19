@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Foto - Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <h2>Upload Foto ke Discord</h2>
+  <form id="uploadForm">
+    <label>Caption:</label><br>
+    <input type="text" id="caption" placeholder="Tulis cerita singkat..."><br><br>
+
+    <label>Pilih Foto:</label><br>
+    <input type="file" id="fileInput" accept="image/*"><br><br>
+
+    <button type="submit">Upload</button>
+  </form>
+
+  <script>
+    const webhookURL = "WEBHOOK_DISCORD_MU_DI_SINI";
+
+    document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const file = document.getElementById("fileInput").files[0];
+      const caption = document.getElementById("caption").value;
+
+      if (!file) {
+        alert("Pilih file terlebih dahulu!");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("payload_json", JSON.stringify({ content: caption }));
+
+      await fetch(webhookURL, { method: "POST", body: formData });
+      alert("Foto berhasil diupload ke Discord!");
+    });
+  </script>
+</body>
+</html>
