@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Debora Elizabeth - Portfolio</title>
+    <title>Debora - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
         :root {
             --primary-bg: #f5f5f5;
             --primary-text: #333;
-            --accent-color: #556B2F; /* Warna Hijau Zaitun yang Elegan */
+            --accent-color: #556B2F; /* Olive Green Elegant */
             --light-text: #888;
         }
         body {
@@ -57,6 +57,10 @@
             text-decoration: none;
             color: var(--primary-text);
             font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--accent-color);
         }
         .hero {
             display: flex;
@@ -70,7 +74,7 @@
             z-index: 1;
         }
         .hero h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             font-weight: 700;
             margin-bottom: 10px;
         }
@@ -85,11 +89,12 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: 700;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
             display: inline-block;
         }
         .btn:hover {
             transform: translateY(-3px);
+            background-color: #6B8E23;
         }
         .section {
             padding: 80px 0;
@@ -100,7 +105,7 @@
             font-weight: 700;
             margin-bottom: 50px;
         }
-        /* Style untuk Card Slider (Perubahan) */
+        /* Portfolio Cards */
         .portfolio-slider {
             overflow-x: auto;
             scroll-snap-type: x mandatory;
@@ -111,6 +116,7 @@
             display: flex;
             gap: 30px;
             padding-bottom: 20px;
+            justify-content: center; /* Menengahkan card */
         }
         .portfolio-item {
             flex: 0 0 auto;
@@ -140,7 +146,7 @@
             color: var(--light-text);
             padding: 0 15px 15px;
         }
-        /* Style untuk Galeri (Perubahan) */
+        /* Gallery Cards */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -153,25 +159,30 @@
         }
         .gallery-item-card img {
             width: 100%;
-            height: auto;
+            height: 300px; /* Ukuran gambar diperkecil dan konsisten */
+            object-fit: cover;
             display: block;
             transition: transform 0.3s ease;
         }
         .gallery-item-card:hover img {
             transform: scale(1.05);
         }
-
+        /* About Me */
         #about-me .content {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 50px;
+            gap: 30px;
+            text-align: center;
         }
         #about-me .profile-pic {
-            width: 250px;
-            height: 250px;
+            width: 200px; /* Ukuran foto diperkecil */
+            height: 200px;
             border-radius: 50%;
             object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
+        /* Contact */
         #contact {
             text-align: center;
         }
@@ -209,6 +220,13 @@
             color: var(--light-text);
             background-color: #f0f0f0;
         }
+        /* Responsiveness */
+        @media (min-width: 768px) {
+            #about-me .content {
+                flex-direction: row;
+                text-align: left;
+            }
+        }
     </style>
 </head>
 <body>
@@ -239,27 +257,27 @@
     <div class="portfolio-slider">
         <div class="portfolio-grid">
             <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x200" alt="Proyek 1">
+                <img src="https://images.unsplash.com/photo-1627889397980-60b6911c0397?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project Blossom">
                 <h3>Project Blossom</h3>
                 <p>A rebranding case study for a local flower shop.</p>
             </div>
             <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x200" alt="Proyek 2">
+                <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9446?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Digital Marketing Campaign">
                 <h3>Digital Marketing Campaign</h3>
                 <p>UI/UX design for a new SEO optimization app.</p>
             </div>
             <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x200" alt="Proyek 3">
+                <img src="https://images.unsplash.com/photo-1559828552-6663f7899066?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Neauthy Cosmetics">
                 <h3>Neauthy Cosmetics</h3>
                 <p>E-commerce website design for a cosmetic brand.</p>
             </div>
             <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x200" alt="Proyek 4">
+                <img src="https://images.unsplash.com/photo-1588145244585-649987be753f?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Coffee Shop App">
                 <h3>Coffee Shop App</h3>
                 <p>UI/UX design for a mobile coffee ordering app.</p>
             </div>
             <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x200" alt="Proyek 5">
+                <img src="https://images.unsplash.com/photo-1522204902347-194164e2626e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Personal Branding">
                 <h3>Personal Branding</h3>
                 <p>Visual identity and logo design for a personal brand.</p>
             </div>
@@ -271,16 +289,16 @@
     <h2 class="section-title">Visuals</h2>
     <div class="gallery-grid">
         <div class="gallery-item-card">
-            <img src="https://github.com/marcellnw/Debora/blob/main/1756997930885_20250904215848.jpg?raw=true" alt="Galeri 1">
+            <img src="https://images.unsplash.com/photo-1472851458739-e4d6501235b2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Galeri 1">
         </div>
         <div class="gallery-item-card">
-            <img src="https://github.com/marcellnw/Debora/blob/main/1756997159570_20250904214558.jpg?raw=true" alt="Galeri 2">
+            <img src="https://images.unsplash.com/photo-1531061329241-dbdd78111242?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Galeri 2">
         </div>
         <div class="gallery-item-card">
-            <img src="https://github.com/marcellnw/Debora/blob/main/1757088812260_20250905231331.jpg?raw=true" alt="Galeri 3">
+            <img src="https://images.unsplash.com/photo-1596769919018-b22301f28b49?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Galeri 3">
         </div>
         <div class="gallery-item-card">
-            <img src="https://github.com/marcellnw/Debora/blob/main/1757389793730_20250909104951.jpg?raw=true" alt="Galeri 4">
+            <img src="https://images.unsplash.com/photo-1576085834887-f1c9d8e520eb?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Galeri 4">
         </div>
     </div>
 </section>
@@ -288,7 +306,7 @@
 <section id="about-me" class="section container">
     <h2 class="section-title">A Little About Me</h2>
     <div class="content">
-        <img src="https://via.placeholder.com/250" alt="Foto Debora" class="profile-pic">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29329?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Foto Debora" class="profile-pic">
         <div>
             <p>My journey began with a passion for storytelling, which evolved into a love for visual design. I am a detail-oriented professional, dedicated to creating seamless and beautiful experiences. My skills span across UI/UX design, content writing, and brand strategy.</p>
             <p>I believe that every project, big or small, holds the potential to make a meaningful impact. When I'm not designing, you can find me exploring new coffee shops or reading a good book.</p>
@@ -308,7 +326,7 @@
 </section>
 
 <footer>
-    <p>&copy; 2025 Debora Elizabeth. All Rights Reserved.</p>
+    <p>&copy; 2025 Debora. All Rights Reserved.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.4/tsparticles.min.js"></script>
