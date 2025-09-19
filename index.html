@@ -21,7 +21,7 @@
             background-color: var(--primary-bg);
             color: var(--primary-text);
             line-height: 1.6;
-            overflow-x: hidden; /* Mencegah horizontal scroll di body */
+            overflow-x: hidden;
         }
         #particles-js {
             position: absolute;
@@ -114,7 +114,7 @@
         }
         .portfolio-item {
             flex: 0 0 auto;
-            width: 300px; /* Ukuran kartu tetap */
+            width: 300px;
             background: #fff;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             border-radius: 10px;
@@ -128,7 +128,7 @@
         }
         .portfolio-item img {
             width: 100%;
-            height: 180px; /* Ukuran foto diperbaiki */
+            height: 180px;
             object-fit: cover;
         }
         .portfolio-item h3 {
@@ -140,24 +140,24 @@
             color: var(--light-text);
             padding: 0 15px 15px;
         }
-        /* Tambahan CSS untuk Galeri */
+        /* Style untuk Galeri (Perubahan) */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
         }
-        .gallery-item {
+        .gallery-item-card {
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .gallery-item img {
+        .gallery-item-card img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             transition: transform 0.3s ease;
         }
-        .gallery-item:hover img {
+        .gallery-item-card:hover img {
             transform: scale(1.05);
         }
 
@@ -270,16 +270,16 @@
 <section id="gallery" class="section container">
     <h2 class="section-title">Visuals</h2>
     <div class="gallery-grid">
-        <div class="gallery-item">
+        <div class="gallery-item-card">
             <img src="https://github.com/marcellnw/Debora/blob/main/1756997930885_20250904215848.jpg?raw=true" alt="Galeri 1">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item-card">
             <img src="https://github.com/marcellnw/Debora/blob/main/1756997159570_20250904214558.jpg?raw=true" alt="Galeri 2">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item-card">
             <img src="https://github.com/marcellnw/Debora/blob/main/1757088812260_20250905231331.jpg?raw=true" alt="Galeri 3">
         </div>
-        <div class="gallery-item">
+        <div class="gallery-item-card">
             <img src="https://github.com/marcellnw/Debora/blob/main/1757389793730_20250909104951.jpg?raw=true" alt="Galeri 4">
         </div>
     </div>
